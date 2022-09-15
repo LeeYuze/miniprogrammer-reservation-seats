@@ -99,9 +99,9 @@ Page({
         const seatList: SeatData[][] = [...this.data.seatArray];
         let seatObj = seatList[row].find(item => item.id === id);
         // valid isBought
-        if (seatObj.isBought) return;
+        if (seatObj && seatObj.isBought) return;
 
-        seatObj = Object.assign(seatObj, { isSelected: !seatObj.isSelected });
+        seatObj = Object.assign(seatObj, { isSelected: seatObj && !seatObj.isSelected });
 
         // push current selected list.
         if (seatObj.isSelected) {
@@ -111,7 +111,7 @@ Page({
         }
 
         seatList[row].forEach(item => {
-            if (item.id === seatObj.id) {
+            if (item.id === (seatObj && seatObj.id)) {
                 item = Object.assign(item, seatObj);
             }
         })
