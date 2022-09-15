@@ -34,8 +34,12 @@ Page({
         query.select('.seat-wrapper').boundingClientRect()
         query.exec((res) => {
             const { width } = res[0];
+            const pixelRatio = 750 / wx.getSystemInfoSync().windowWidth * 0.99;
+            
+            const seatSize = width ? (parseInt(width) / this.data.column) * pixelRatio : 0
+            
             this.setData({
-                seatSize: width ? (parseInt(width) / this.data.column) * 2 : 0
+                seatSize
             })
 
         })
@@ -95,9 +99,9 @@ Page({
         const seatList: SeatData[][] = [...this.data.seatArray];
         let seatObj = seatList[row].find(item => item.id === id);
         // valid isBought
-        if (seatObj?.isBought) return;
+        if (seatObj.isBought) return;
 
-        seatObj = Object.assign(seatObj, { isSelected: !seatObj?.isSelected });
+        seatObj = Object.assign(seatObj, { isSelected: !seatObj.isSelected });
 
         // push current selected list.
         if (seatObj.isSelected) {
@@ -107,7 +111,7 @@ Page({
         }
 
         seatList[row].forEach(item => {
-            if (item.id === seatObj?.id) {
+            if (item.id === seatObj.id) {
                 item = Object.assign(item, seatObj);
             }
         })
