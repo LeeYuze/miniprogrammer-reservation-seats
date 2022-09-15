@@ -1,0 +1,24 @@
+<!--pages/seat/seat.wxml-->
+<view class="wrapper">
+    <text class="title">选座demo</text>
+
+    <!-- 座位区域 -->
+    <view class="seat-wrapper">
+        <view class="seatRow" wx:for="{{seatArray}}" wx:key="index">
+            <view class="seat" wx:for="{{item}}" wx:for-item="column" wx:key="id" style="width:{{seatSize}}rpx; height: {{seatSize}}rpx;">
+                <view class="seat__inner {{column.isBought?'bought-seat':column.isSelected?'selected-seat':'unselected-seat'}}" wx:if="{{column.isActive}}" data-id="{{column.id}}" data-row="{{column.row - 1}}" bindtap="handleSeatOnTap">
+                    {{column.row}}-{{column.column}}-{{column.id}}
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="operation">
+        <button bindtap="handleBoughtSeatOnTap">订座</button>
+    </view>
+
+    <view wx:for="{{selectedSeatArray}}" wx:key="id">
+        selected: 第{{item.row}}行 - 第{{item.column}}列 - ID：{{item.id}}
+    </view>
+</view>

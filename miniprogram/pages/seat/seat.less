@@ -1,0 +1,52 @@
+/* pages/seat/seat.wxss */
+@import "./var.less";
+
+.title {
+    margin-bottom: 30rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.seat-wrapper {
+    margin: 0 auto;
+    width: 80vw;
+    height: 50vh;
+    border: 1rpx dotted #c5c5c5;
+    overflow: hidden;
+}
+
+.seat {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seat__inner {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    font-size: 24rpx;
+}
+
+.selected-seat {
+    background: url(@selected-seat-icon) center center no-repeat;
+    background-size: 100% 100%;
+}
+
+.unselected-seat {
+    background: url(@unselected-seat-icon) center center no-repeat;
+    background-size: 100% 100%;
+}
+
+.bought-seat {
+    background: url(@bought-seat-icon) center center no-repeat;
+    background-size: 100% 100%;
+}
+
+.operation {
+    margin-top: 20rpx;
+}
